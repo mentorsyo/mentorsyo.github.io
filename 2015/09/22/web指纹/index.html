@@ -1,0 +1,594 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="博客名" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="所谓的web指纹识别，其实就是所谓的相关的特征点，在整个网站中都存在一些带有特征的相关信息，一般应用程序在html、js、css等文件中多多少少会包含一些特征码，这跟ips、waf等产品的特性有点类似，有特征码匹配模式。比如wordpress如果没有特细隐藏的话，在robots.txt中会包含wp-admin之类，首页index.php中会包含generator=wordpress 3.xx，后面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么叫做web指纹？">
+<meta property="og:url" content="http://95on.cn/2015/09/22/web指纹/index.html">
+<meta property="og:site_name" content="博客名">
+<meta property="og:description" content="所谓的web指纹识别，其实就是所谓的相关的特征点，在整个网站中都存在一些带有特征的相关信息，一般应用程序在html、js、css等文件中多多少少会包含一些特征码，这跟ips、waf等产品的特性有点类似，有特征码匹配模式。比如wordpress如果没有特细隐藏的话，在robots.txt中会包含wp-admin之类，首页index.php中会包含generator=wordpress 3.xx，后面">
+<meta property="og:updated_time" content="2016-09-22T13:41:18.636Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="什么叫做web指纹？">
+<meta name="twitter:description" content="所谓的web指纹识别，其实就是所谓的相关的特征点，在整个网站中都存在一些带有特征的相关信息，一般应用程序在html、js、css等文件中多多少少会包含一些特征码，这跟ips、waf等产品的特性有点类似，有特征码匹配模式。比如wordpress如果没有特细隐藏的话，在robots.txt中会包含wp-admin之类，首页index.php中会包含generator=wordpress 3.xx，后面">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://95on.cn/2015/09/22/web指纹/"/>
+
+  <title> 什么叫做web指纹？ | 博客名 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">博客名</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">追梦，钻研，努力</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                什么叫做web指纹？
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2015-09-22T21:14:07+08:00" content="2015-09-22">
+              2015-09-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/知识/" itemprop="url" rel="index">
+                    <span itemprop="name">知识</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>所谓的web指纹识别，其实就是所谓的相关的特征点，在整个网站中都存在一些带有特征的相关信息，一般应用程序在html、js、css等文件中多多少少会包含一些特征码，这跟ips、waf等产品的特性有点类似，有特征码匹配模式。比如wordpress如果没有特细隐藏的话，在robots.txt中会包含wp-admin之类，首页index.php中会包含generator=wordpress 3.xx，后面为版本号，页面中会包含wp-content路径等等<br><a id="more"></a></p>
+<h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><p>是为了通过特征码来判别web是属于哪一个公司的基础框架，例如上面提到的Discuz公司，它有完善的一套通用的社区论坛软件系统，这个系统是为了让用户在不想要任何编程的情况下，通过简单的设置和安装在互联网上搭建起具备完善功能、很强负载能力和可高度定制的论坛服务。<br>特征码会携带在自己的系统中，我们可以通过web指纹也就是所谓的特征码来判断这个网站是属于哪个系统的</p>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>关于方法有以下几个方面来获得web的指纹识别<br>1：网页中发现关键字</p>
+<p>2：特定文件的MD5（主要是静态文件、不一定要是MD5）</p>
+<p>3：指定URL的关键字</p>
+<p>4：指定URL的TAG模式</p>
+<p>以上4种模式结合起来识别的话正确率一般在95%以上，除非个别BT的站点修改的体无完肤，如meta、文件路径、css等都删除了或故意修改成其他的webapp等，那我只能说你屌爆了。<br>一些工具的查询特征码的方法<br>1.利用的是正则表达式来查询相关的特征码的  </p>
+<blockquote>
+<pre><code>&apos;WordPress&apos;: { cats: { 1:  1, 2: 11 }, meta: { &apos;generator&apos;: /WordPress/i }, html: /  
+</code></pre></blockquote>
+<p>2.利用Beautiful Soup 来解析html、xml文件识别网站使用的插件及版本。<br>Beautiful Soup 是一个 Python HTML/XML 处理器，设计用来快速地转换网页抓取。以下的特性支撑着 Beautiful Soup：</p>
+<p>Beautiful Soup 不会选择 即使你给他一个损坏的标签。 他产生一个转换DOM树，尽可能和你原文档内容含义一致 。这种措施通常能够你搜集数据的需求。<br>Beautiful Soup 提供一些简单的方法以及类Python语法 来查找、查找、修改一颗转换树：一个工具集帮助你解析一棵树并释出你需要的内容。你不需要为每一个应用创建自己的解析工具。<br>Beautiful Soup 自动将送进来的文档转换为 Unicode 编码 而且在输出的时候转换为 UTF-8,。 除非这个文档没有指定编码方式或者Beautiful Soup 没能自动检测编码，你需要手动指定编码方式，否则你不需要考虑编码的问题。<br>3.就是利用新的模块scrapy  有兴趣的同学可以去看看  大部分都用的都是Beautiful Soup</p>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p>说一个比较厉害的工具吧  whatweb 可以鉴别出内容管理系统(CMS)、博客平台、统计分析软件、javascript库、服务器和其他更多Web程序。whatweb拥有超过900个插件，插件是用来鉴别Web应用系统的。可以说whatweb是目前网络上比较强大的一款应用识别程序了。它支持正则表达式、md5 hash匹配、url识别、HTML标记模式、蜘蛛爬行等等。  </p>
+<h5 id="如果有更想了解的同学可以看看这篇文章"><a href="#如果有更想了解的同学可以看看这篇文章" class="headerlink" title="如果有更想了解的同学可以看看这篇文章"></a>如果有更想了解的同学可以看看这篇文章</h5><p><a href="http://www.freebuf.com/articles/2555.html" target="_blank" rel="external">http://www.freebuf.com/articles/2555.html</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/07/19/第一个文章/" rel="next" title="【置顶】">
+                <i class="fa fa-chevron-left"></i> 【置顶】
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/09/23/虚拟机的上网问题/" rel="prev" title="怎么解决虚拟机上网的问题">
+                怎么解决虚拟机上网的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="yours" />
+          <p class="site-author-name" itemprop="name">yours</p>
+          <p class="site-description motion-element" itemprop="description">博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#目的"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工具"><span class="nav-number"></span> <span class="nav-text">工具</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如果有更想了解的同学可以看看这篇文章"><span class="nav-number">0.1.</span> <span class="nav-text">如果有更想了解的同学可以看看这篇文章</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yours</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

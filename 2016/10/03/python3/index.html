@@ -1,0 +1,691 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="博客名" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="python中的类和对象实例
+类类的定义和相关语法的实现类的关键字就是class 然后书写类名 书写的方式类似与定义函数
+
+class student():
+    pass
+a = student()">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python基本学习(三)--类和对象">
+<meta property="og:url" content="http://95on.cn/2016/10/03/python3/index.html">
+<meta property="og:site_name" content="博客名">
+<meta property="og:description" content="python中的类和对象实例
+类类的定义和相关语法的实现类的关键字就是class 然后书写类名 书写的方式类似与定义函数
+
+class student():
+    pass
+a = student()">
+<meta property="og:updated_time" content="2016-11-05T12:11:44.274Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python基本学习(三)--类和对象">
+<meta name="twitter:description" content="python中的类和对象实例
+类类的定义和相关语法的实现类的关键字就是class 然后书写类名 书写的方式类似与定义函数
+
+class student():
+    pass
+a = student()">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://95on.cn/2016/10/03/python3/"/>
+
+  <title> python基本学习(三)--类和对象 | 博客名 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">博客名</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">追梦，钻研，努力</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                python基本学习(三)--类和对象
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-10-03T18:06:15+08:00" content="2016-10-03">
+              2016-10-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/知识/" itemprop="url" rel="index">
+                    <span itemprop="name">知识</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>python中的类和对象实例</p>
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><p>类的定义和相关语法的实现类的关键字就是class 然后书写类名 书写的方式类似与定义函数</p>
+<blockquote>
+<pre><code>class student():
+    pass
+a = student()
+</code></pre></blockquote>
+<a id="more"></a>
+<p>这就是实现了基本的类的定义和类的实例化<br>在类的括号里面需要填入的是所继承的父类<br>在定义类的过程中的会接触到一个函数叫做初始化函数 <code>__init__</code>这个函数<br>如果在类里面定义了这个函数要注意的是在对类实例化的过程中不能在用空的定义了必须传给参数</p>
+<blockquote>
+<pre><code>class student():
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+a = studnet(&apos;Bon&apos;,15)
+</code></pre></blockquote>
+<p>对于类的函数来说每一次定义方法都必须在参数里面的第一个参数写上self<br>下面介绍一下类似php中封装的知识<br>在面向对象的语言中有三大特性<br>1.封装<br>2.继承<br>3.多态</p>
+<h4 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h4><p>下面我们对属性进行封装不让外界直接对我类里面的内容进行修改和访问<br>就需要在我们定义的属性前面加上两个下划线</p>
+<blockquote>
+<pre><code>self.__name = name
+</code></pre></blockquote>
+<p>这样就不能在类外进行访问和修改 如果我们因为某些特殊需求必须实现对私有属性进行修改或者访问<br>1.把它改为公有属性<br>2.提供可访问的接口对它们进行操作也就是get set两种方法<br>提供两种访问的方法对其进行访问</p>
+<blockquote>
+<pre><code>def get_name(self):
+    return self.__name
+def set_name(self,name):
+    self.__name = name 
+</code></pre></blockquote>
+<p>下面是一段比较完整的代码写法</p>
+<blockquote>
+<pre><code>class Student():
+    #创建累的初始化方法 一旦写入这个方法再调用的时候就必须传入参数
+    #第一个参数永远是self 但在赋值的时候不用管会自动把实例传递进来
+    def __init__(self,name,age): #写了这个方法就必须调用这个方法 __init__初始化的方法
+    #创建属性并且给属性赋值
+    #再属性的前面添加一个下划线 表示 我虽然是公有属性 但是请把我当做一个私有属性看待 仅仅是一个约定
+        self.__name = name# 双下划线代表私有属性 只能在类里面进行调用不能在外面进行调用 没有则是公共属性 如果要在外界进行访问的话需要调用get和set的方法
+        self.__age = age
+        self.__city = &apos;beijing&apos;
+        #在类里面创建函数第一个参数永远是self 但是不需要赋值 会自动把对象传给self
+    def print_STU(self):
+        print(&apos;name: %s age: %s&apos; %(self.__name,self.__age))
+    def get_city(self):
+        return self.__city
+    def get_name(self):
+        return self.__name
+    def set_age(self,age):
+        if abs(age) 100:
+            self.__age = 100
+        else:
+            self.__age = abs(age)
+    def get_age(self):
+        return self.__age
+a = Student(&apos;bob&apos;,45)
+a.print_STU()
+print(a.get_city())
+print(a.get_name())
+a.set_age(1000)
+print(a.get_age())
+</code></pre></blockquote>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>类之间的继承 没有父类的类叫做基类 类的继承可以无限继承也就是子类可以当作父类来进行继承<br>类和类之间的继承只需要在类的括号里面填写上父类<br>子类可以直接调用父类的方法也可以在子类里面重写父类的方法或者写父类没有的方法如果重构方法就会使用当前子类的方法</p>
+<blockquote>
+<pre><code>class Animal(object):# 基类所有的子类都继承父类 子类可以继承父类的方法
+    def eat(self):
+        print(&apos;Animal eating&apos;)
+class Dog(Animal):
+    def eat(self):
+        print(&apos;Dog eat meat&apos;)
+class zangao(Dog):
+    pass
+class Horse(Animal):
+    def eat(self):
+        print(&apos;horse eat grass&apos;)
+a = Animal()
+b = Dog()
+c = Horse()
+d = zangao()
+a.eat()
+b.eat()
+c.eat()
+d.eat()
+</code></pre></blockquote>
+<h4 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h4><p>多态就是父类的多种形态的展现 因为子类都继承与父类，父类可以通过子类实现父类本身的方法和属性而一个父类又可以有很多的子类，并且多个子类可以以不同的形式来展现父类的方法  关于多态 一句话概括  父类指针指向子类对象</p>
+<blockquote>
+<pre><code>def foo(animal):
+    if isinstance(animal,Animal):
+        animal.eat()
+foo(d) #传入的值只要有eat的方法就可以是用这个类 如果对传入的内容进行了限制的话  比如isinstance这个函数就必须传入的是基类的子类
+class student():
+    name = &apos;bob&apos;
+s = student()
+print(student.name)
+s.name=&apos;jack&apos;
+print(s.name)# 不要让实例属性和类属性同名
+</code></pre><p>实例属性和类属性的优先级<br>实例属性高于类属性</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/01/python2/" rel="next" title="python基本学习(二)--python函数">
+                <i class="fa fa-chevron-left"></i> python基本学习(二)--python函数
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/05/python4/" rel="prev" title="python基本学习(四)--文件操作">
+                python基本学习(四)--文件操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="yours" />
+          <p class="site-author-name" itemprop="name">yours</p>
+          <p class="site-description motion-element" itemprop="description">博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">categories</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#类"><span class="nav-number">1.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#封装"><span class="nav-number">1.1.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承"><span class="nav-number">1.2.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多态"><span class="nav-number">1.3.</span> <span class="nav-text">多态</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yours</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
