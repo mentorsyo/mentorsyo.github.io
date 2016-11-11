@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion">
+<html class="theme-next mist use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -101,13 +101,13 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Muse',
+    scheme: 'Mist',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
     duoshuo: {
       userId: 0,
-      author: 'Author'
+      author: '博主'
     }
   };
 </script>
@@ -120,7 +120,7 @@
   <title> 博客名 </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
 
@@ -177,7 +177,27 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -187,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -197,7 +217,17 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-board">
+          <a href="/board" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            留言板
           </a>
         </li>
       
@@ -253,7 +283,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2016-03-12T21:16:23+08:00" content="2016-03-12">
               2016-03-12
             </time>
@@ -265,7 +295,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/知识/" itemprop="url" rel="index">
@@ -305,7 +335,7 @@
           <p>xsser.me是一个xss漏洞收集平台这几天博主自己搭建了一个关于xsser的漏洞收集平台在这个平台我们注册帐号来收集xss漏洞<br>相关的搭建过程如下<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/03/12/xsser/#more" rel="contents">
-              Read more &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -368,7 +398,7 @@
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2015-11-02T19:32:23+08:00" content="2015-11-02">
               2015-11-02
             </time>
@@ -380,7 +410,7 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/漏洞/" itemprop="url" rel="index">
@@ -502,7 +532,7 @@ echo $result;
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2015-10-30T20:31:23+08:00" content="2015-10-30">
               2015-10-30
             </time>
@@ -514,7 +544,7 @@ echo $result;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/漏洞/" itemprop="url" rel="index">
@@ -554,7 +584,7 @@ echo $result;
           <p>前面写了一点文件上传的漏洞成因和相关利用现在在这里说下防御的措施分下面几个类型<br>1。一般来说网站管理会把用户上传的文件统一放在一个文件夹下，我们把这个文件夹的权限限制让其文件夹里面的文件不能被执行，这样所有的可执行脚本都无法执行和生成恶意代码<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/10/30/上传防御/#more" rel="contents">
-              Read more &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -617,7 +647,7 @@ echo $result;
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2015-10-25T18:35:23+08:00" content="2015-10-25">
               2015-10-25
             </time>
@@ -629,7 +659,7 @@ echo $result;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/漏洞/" itemprop="url" rel="index">
@@ -669,7 +699,7 @@ echo $result;
           <h2 id="文件上传的必要性"><a href="#文件上传的必要性" class="headerlink" title="文件上传的必要性"></a>文件上传的必要性</h2><p>在现在互联网时代。越来越多的网站需要更好的用户体验，增添了很多交互，文件上传就是其中的一种，它允许用户向网站上传用户所需要的图片文本，以方便用户自己选择更好的体验方式。因此产生了文件上传的漏洞，厂商起初是为了方便用户体验，上传文件的时候，如果服务器端脚本语言，未对上传的文件进行严格的验证和过滤，就有可能上传恶意的脚本文件，从而控制整个网站，甚至是服务器。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/10/25/上传/#more" rel="contents">
-              Read more &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -732,7 +762,7 @@ echo $result;
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2015-10-20T19:46:23+08:00" content="2015-10-20">
               2015-10-20
             </time>
@@ -744,7 +774,7 @@ echo $result;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/工具/" itemprop="url" rel="index">
@@ -784,7 +814,7 @@ echo $result;
           <h2 id="扫描工具sqlmap"><a href="#扫描工具sqlmap" class="headerlink" title="扫描工具sqlmap"></a>扫描工具sqlmap</h2><p>sqlmap是一款强大的注入工具，它的自动化注入是最强大的，相比于手工注入来说sqlmap运行速度快可以更快的获取数据库的相关信息和相关的权限，sqlmap到现在为止一直有开源社区进行维护，所以对于sql注入来说是无往而不利的利器。<br>当给sqlmap这么一个url的时候，它会：<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/10/20/扫面工具/#more" rel="contents">
-              Read more &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -847,7 +877,7 @@ echo $result;
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2015-10-17T21:16:25+08:00" content="2015-10-17">
               2015-10-17
             </time>
@@ -859,7 +889,7 @@ echo $result;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/知识/" itemprop="url" rel="index">
@@ -903,7 +933,7 @@ echo $result;
 <p>会直接在网页中嵌套后面的语句制造了伪协议<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/10/17/php/#more" rel="contents">
-              Read more &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -966,7 +996,7 @@ echo $result;
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2015-10-15T20:02:25+08:00" content="2015-10-15">
               2015-10-15
             </time>
@@ -978,7 +1008,7 @@ echo $result;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/漏洞/" itemprop="url" rel="index">
@@ -1019,7 +1049,7 @@ echo $result;
 <h2 id="oracle数据库"><a href="#oracle数据库" class="headerlink" title="oracle数据库"></a>oracle数据库</h2><p>oracle数据库作为当前最大的数据库，拥有了最快的查询速度和最规范的的数据库被很多大公司和中型公司使用，所以oracle是当前实用性最强的数据库，之所以oracle不被小公司使用因为   <strong>收费</strong><br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/10/15/sql3md/#more" rel="contents">
-              Read more &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -1082,7 +1112,7 @@ echo $result;
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2015-10-13T19:30:25+08:00" content="2015-10-13">
               2015-10-13
             </time>
@@ -1094,7 +1124,7 @@ echo $result;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/漏洞/" itemprop="url" rel="index">
@@ -1136,7 +1166,7 @@ echo $result;
 <h3 id="sql注入实例"><a href="#sql注入实例" class="headerlink" title="sql注入实例"></a>sql注入实例</h3><p>information_schema是mysql5.0以后产生的虚拟数据库，提供了访问数据库元数据的方式，就是数据的数据   我们的联合查询技术就是主要基于这个技术<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/10/13/mysql/#more" rel="contents">
-              Read more &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -1199,7 +1229,7 @@ echo $result;
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2015-10-10T21:21:21+08:00" content="2015-10-10">
               2015-10-10
             </time>
@@ -1211,7 +1241,7 @@ echo $result;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/漏洞/" itemprop="url" rel="index">
@@ -1252,7 +1282,7 @@ echo $result;
 <h3 id="关于sql注入的几种注入技术："><a href="#关于sql注入的几种注入技术：" class="headerlink" title="关于sql注入的几种注入技术："></a>关于sql注入的几种注入技术：</h3><p>攻击的请求向量：分为get post cookie<br>数据类型： 整形 字符型 搜索型<br>显示数据的方法：<br>1，显错注入<br>2，盲注入(布尔注入 延时注入 报错注入 联合查询注入 堆查询注入 DNS查询注入)<br>数据的操作：所谓的增删改查  select update insert delete<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/10/10/sql/#more" rel="contents">
-              Read more &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -1315,7 +1345,7 @@ echo $result;
             <span class="post-meta-item-icon">
               <i class="fa fa-calendar-o"></i>
             </span>
-            <span class="post-meta-item-text">Posted on</span>
+            <span class="post-meta-item-text">发表于</span>
             <time itemprop="dateCreated" datetime="2015-09-30T21:21:21+08:00" content="2015-09-30">
               2015-09-30
             </time>
@@ -1327,7 +1357,7 @@ echo $result;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              <span class="post-meta-item-text">In</span>
+              <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/工具/" itemprop="url" rel="index">
@@ -1367,7 +1397,7 @@ echo $result;
           <p>appscan 这是一款中文界面的扫描器，在自动扫描的区域里面最强的的工具之一 和webinspect统称为两大神器之一<br>在安装这个的过程也存在了自动登陆和相关的特色小工具<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2015/09/30/屠龙刀/#more" rel="contents">
-              Read more &raquo;
+              阅读全文 &raquo;
             </a>
           </div>
         
@@ -1442,16 +1472,16 @@ echo $result;
           <div class="site-state-item site-state-posts">
             <a href="/archives">
               <span class="site-state-item-count">24</span>
-              <span class="site-state-item-name">posts</span>
+              <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
             <div class="site-state-item site-state-categories">
-              
+              <a href="/categories">
                 <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">categories</span>
-              
+                <span class="site-state-item-name">分类</span>
+              </a>
             </div>
           
 
@@ -1494,7 +1524,7 @@ echo $result;
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2013 - 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -1503,13 +1533,13 @@ echo $result;
 </div>
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
-  Theme -
+  主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Mist
   </a>
 </div>
 
